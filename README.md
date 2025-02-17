@@ -1,10 +1,8 @@
 ![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
 
-# n8n-nodes-starter
+# n8n-nodes-simplybook
 
-This repo contains example nodes to help you get started building your own custom integrations for [n8n](n8n.io). It includes the node linter and other dependencies.
-
-To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
+This repo contains custom nodes for integrating with the SimplyBook.me API in [n8n](https://n8n.io). It includes the node linter and other dependencies.
 
 ## Prerequisites
 
@@ -37,10 +35,30 @@ These are the basic steps for working with the starter. For detailed guidance on
 10. Update the LICENSE file to use your details.
 11. [Publish](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) your package to npm.
 
+## SimplyBook.me Node
+
+This project includes custom nodes for interacting with the SimplyBook.me API. The following resources and operations are available:
+
+### Resources
+
+- **Service**
+- **Provider**
+- **Location**
+- **Category**
+- **Slot**
+
+### Operations
+
+- **Get Services**: Retrieve services with filter search.
+- **Get Providers**: Retrieve providers with filter search.
+- **Get Locations**: Retrieve locations with filter search.
+- **Get Categories**: Retrieve categories with filter search.
+- **Get Slots**: Retrieve available slots for booking as admin.
+
 ## More information
 
 Refer to our [documentation on creating nodes](https://docs.n8n.io/integrations/creating-nodes/) for detailed information on building your own nodes.
 
 ## License
 
-[MIT](https://github.com/n8n-io/n8n-nodes-starter/blob/master/LICENSE.md)
+[MIT](LICENSE.md)

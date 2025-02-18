@@ -21,7 +21,7 @@ export class SimplybookApi implements ICredentialType {
 
 	properties: INodeProperties[] = [
 		{
-			displayName: 'Simplybook API URL',
+			displayName: 'Simplybook API URL (without trailing slash)',
 			name: 'url',
 			type: 'string',
 			required: true,
@@ -52,27 +52,27 @@ export class SimplybookApi implements ICredentialType {
 		{
 			displayName: 'Session Token',
 			name: 'sessionToken',
-			type: 'hidden',  // Це поле не буде видно у UI
+			type: 'hidden',
 			typeOptions: {
-				expirable: true,  // Це дозволяє маркувати токен як такий, що має термін дії
+				expirable: true,
 			},
 			default: '',
 		},
 		{
 			displayName: 'Refresh Token',
 			name: 'refreshToken',
-			type: 'hidden',  // Аналогічно, ховаємо refreshToken
+			type: 'hidden',
 			default: '',
 		},
 		{
 			displayName: 'Token Expiry',
 			name: 'tokenExpiry',
-			type: 'hidden',  // І також ховаємо поле з терміном дії токену
+			type: 'hidden',
 			default: '',
 		},
 	];
 
-	// Функція для отримання токену перед аутентифікацією
+
 	async preAuthentication(this: IHttpRequestHelper, credentials: ICredentialDataDecryptedObject) {
 		const { company, login, password } = credentials;
 
@@ -92,7 +92,7 @@ export class SimplybookApi implements ICredentialType {
 			json: true,
 		});
 
-		// Повертаємо токен та термін його дії
+
 		return {
 			sessionToken: authResponse.token,
 			refreshToken: authResponse.refresh_token,
@@ -100,7 +100,7 @@ export class SimplybookApi implements ICredentialType {
 		};
 	}
 
-	// Встановлюємо токен для аутентифікації
+
 	authenticate: IAuthenticateGeneric = {
 		type: 'generic',
 		properties: {
@@ -112,11 +112,11 @@ export class SimplybookApi implements ICredentialType {
 	};
 
 
-	// Тестування з’єднання для перевірки правильності токену
+
 	test: ICredentialTestRequest = {
 		request: {
 			baseURL: '={{$credentials?.url}}',
-			url: '/services', // Приклад запиту для тестування
+			url: '/services',
 		},
 	};
 }

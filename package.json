@@ -39,7 +39,8 @@
       "dist/credentials/SimplybookApi.credentials.ts"
     ],
     "nodes": [
-      "dist/nodes/Simplybook/Simplybook.node.js"
+      "dist/nodes/Simplybook/Simplybook.node.js",
+      "dist/nodes/Simplybook/SimplybookTrigger.node.js"
     ]
   },
   "devDependencies": {

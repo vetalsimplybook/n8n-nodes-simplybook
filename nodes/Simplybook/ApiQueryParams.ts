@@ -24,6 +24,8 @@ export const apiQueryParams: INodeProperties[] = [
 					'getFirstAvailableSlot',
 					'getSlotsTimeline',
 					'getBookings',
+					'createBooking',
+					'editBooking',
 				],
 			},
 		},
@@ -50,10 +52,59 @@ export const apiQueryParams: INodeProperties[] = [
 					'getFirstAvailableSlot',
 					'getSlotsTimeline',
 					'getBookings',
+					'createBooking',
+					'editBooking',
 				],
 			},
 		},
 	},
+	//location_id
+	{
+		displayName: 'Location Name or ID',
+		name: 'location_id',
+		type: 'options',
+		description: 'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
+		default: '',
+		//required: true,
+		typeOptions: {
+			loadOptionsMethod: 'getLocationsWithEmpty',
+		},
+		displayOptions: {
+			show: {
+				resource: [
+					'bookings',
+				],
+				operation: [
+					'createBooking',
+					'editBooking',
+				],
+			},
+		},
+	},
+	{
+		displayName: 'Category Name or ID',
+		name: 'category_id',
+		type: 'options',
+		description: 'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
+		default: '',
+		//required: true,
+		typeOptions: {
+			loadOptionsMethod: 'getCategoriesWithEmpty',
+		},
+		displayOptions: {
+			show: {
+				resource: [
+					'bookings',
+				],
+				operation: [
+					'createBooking',
+					'editBooking',
+				],
+			},
+		},
+	},
+
+
 	{
 		displayName: 'Date',
 		name: 'date',
@@ -69,6 +120,24 @@ export const apiQueryParams: INodeProperties[] = [
 					'getSlots',
 					'getAvailableSlots',
 					'getFirstAvailableSlot',
+				],
+			},
+		},
+	},
+	{
+		displayName: 'Date and Time',
+		name: 'datetime',
+		type: 'dateTime',
+		default: '',
+		required: true,
+		displayOptions: {
+			show: {
+				resource: [
+					'bookings',
+				],
+				operation: [
+					'createBooking',
+					'editBooking',
 				],
 			},
 		},
@@ -121,11 +190,14 @@ export const apiQueryParams: INodeProperties[] = [
 			show: {
 				resource: [
 					'slots',
+					'bookings',
 				],
 				operation: [
 					'getAvailableSlots',
 					'getFirstAvailableSlot',
 					'getSlotsTimeline',
+					'createBooking',
+					'editBooking',
 				],
 			},
 		},
@@ -134,6 +206,7 @@ export const apiQueryParams: INodeProperties[] = [
 		displayName: 'Product ID Names or IDs',
 		name: 'products',
 		type: 'multiOptions',
+		required: true,
 		description: 'Choose product from the list. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
 		default: [],
 		typeOptions: {
@@ -206,6 +279,7 @@ export const apiQueryParams: INodeProperties[] = [
 		displayName: 'Status',
 		name: 'status',
 		type: 'options',
+		required: true,
 		// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 		options: [
 			{
@@ -254,6 +328,23 @@ export const apiQueryParams: INodeProperties[] = [
 				],
 				operation: [
 					'getSlotsTimeline',
+				],
+			},
+		},
+	},
+	{
+		displayName: 'Booking ID',
+		name: 'booking_id_required',
+		type: 'number',
+		default: '',
+		required: true,
+		displayOptions: {
+			show: {
+				resource: [
+					'bookings',
+				],
+				operation: [
+					'editBooking',
 				],
 			},
 		},
@@ -319,6 +410,7 @@ export const apiQueryParams: INodeProperties[] = [
 		name: 'name',
 		type: 'string',
 		default: '',
+		required: true,
 		displayOptions: {
 			show: {
 				resource: [
@@ -326,6 +418,7 @@ export const apiQueryParams: INodeProperties[] = [
 				],
 				operation: [
 					'createClient',
+					'editClient',
 				],
 			},
 		},
@@ -335,6 +428,7 @@ export const apiQueryParams: INodeProperties[] = [
 		name: 'email',
 		type: 'string',
 		placeholder: 'name@email.com',
+		required: true,
 		default: '',
 		displayOptions: {
 			show: {
@@ -343,6 +437,7 @@ export const apiQueryParams: INodeProperties[] = [
 				],
 				operation: [
 					'createClient',
+					'editClient',
 				],
 			},
 		},
@@ -351,6 +446,7 @@ export const apiQueryParams: INodeProperties[] = [
 		displayName: 'Phone Number',
 		name: 'phone',
 		type: 'string',
+		required: true,
 		default: '',
 		displayOptions: {
 			show: {
@@ -359,9 +455,44 @@ export const apiQueryParams: INodeProperties[] = [
 				],
 				operation: [
 					'createClient',
+					'editClient',
 				],
 			},
 		},
+	},
+
+	//client_id
+	{
+		displayName: 'Client Name or ID',
+		name: 'client_id',
+		type: 'options',
+		//required: true,
+		description: 'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
+		typeOptions: {
+			loadOptionsMethod: 'getClientsWithEmpty',
+		},
+		default: '',
+		displayOptions: {
+			show: {
+				resource: [
+					'clients',
+					'bookings',
+				],
+				operation: [
+					'editClient',
+					'deleteClient',
+					'createBooking',
+					'editBooking',
+				],
+			},
+		},
+		routing: {
+			request: {
+				qs: {
+					 client_id: '={{$value}}',
+				},
+			},
+		}
 	},
 
 

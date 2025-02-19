@@ -306,23 +306,6 @@ export const apiOperations: INodeProperties[] = [
 					}
 				},
 			},
-			/**
-			 * Create client
-			 * Create new client and return it.
-			 * Throws AccessDenied error in case user does not have access to perform this action.
-			 * Throws BadRequest error in case invalid data was provided with detailed errors per field.
-			 * Throws NotFound error in case client is not found.
-			 * Endpoint:
-			 * /admin/clients
-			 * Method:
-			 * POST
-			 *
-			 * {
-			 *   "name": "Mike",
-			 *   "email": "mikeemail@gmail.com",
-			 *   "phone": "+123456789987"
-			 * }
-			 */
 
 			{
 				name: 'Create Client',
@@ -342,8 +325,43 @@ export const apiOperations: INodeProperties[] = [
 					output: {
 					},
 				},
-			}
+			},
 
+			//edit client
+			{
+				name: 'Edit Client',
+				value: 'editClient',
+				action: 'Edit client',
+				description: 'Edit client and return it',
+				routing: {
+					request: {
+						url: '=/clients/{{$parameter["client_id"]}}',
+						method: 'POST',
+						body: {
+							name: '={{$parameter["name"]}}',
+							email: '={{$parameter["email"]}}',
+							phone: '={{$parameter["phone"]}}',
+						},
+					},
+					output: {
+					},
+				},
+			},
+
+			//delete client
+			{
+				name: 'Delete Client',
+				value: 'deleteClient',
+				action: 'Delete client',
+				routing: {
+					request: {
+						url: '=/clients/{{$parameter["client_id"]}}',
+						method: 'DELETE',
+					},
+					output: {
+					},
+				},
+			},
 
 		],
 		default: 'getClients',
@@ -524,7 +542,7 @@ export const apiOperations: INodeProperties[] = [
 		default: 'getSlots',
 	},
 
-	//Get Slots operations
+	//Get bookings operations
 	{
 		displayName: 'Operation',
 		name: 'operation',
@@ -574,6 +592,82 @@ export const apiOperations: INodeProperties[] = [
 					},
 				},
 			},
+
+			/**
+			 * Create booking
+			 * POST https://user-api-v2.simplybook.me/admin/bookings
+			 * Content-Type: application/json
+			 * X-Company-Login: <insert your company login>
+			 * X-Token: <insert your token from auth step>
+			 *
+			 * {
+			 *   "count": 1,
+			 *   "start_datetime": "2020-12-02 09:30:00",
+			 *   "location_id": 2,
+			 *   "category_id": 2,
+			 *   "provider_id": 4,
+			 *   "service_id": 3,
+			 *   "client_id": 10,
+			 */
+
+			{
+				name: 'Make New Booking',
+				value: 'createBooking',
+				action: 'Create booking',
+				description: 'Return booking result',
+				routing: {
+					request: {
+						url: '=/bookings',
+						method: 'POST',
+						body: {
+							count: '={{$parameter["count"]}}',
+							start_datetime: '={{ new Date($parameter["datetime"]).toISOString().slice(0, 19) }}',
+							location_id: '={{$parameter["location_id"]}}',
+							category_id: '={{$parameter["category_id"]}}',
+							provider_id: '={{$parameter["provider_id"]}}',
+							service_id: '={{$parameter["service_id"]}}',
+							client_id: '={{$parameter["client_id"]}}',
+						},
+					},
+					output: {
+						postReceive: [
+							{
+								type: 'rootProperty',
+								properties: {
+									property: 'bookings',
+								},
+							},
+						],
+					},
+				},
+			},
+
+			//edit booking
+			{
+				name: 'Edit Booking',
+				value: 'editBooking',
+				action: 'Edit booking',
+				description: 'Edit booking and return it',
+				routing: {
+					request: {
+						url: '=/bookings/{{$parameter["booking_id_required"]}}',
+						method: 'POST',
+						body: {
+							count: '={{$parameter["count"]}}',
+							start_datetime: '={{ new Date($parameter["datetime"]).toISOString().slice(0, 19) }}',
+							location_id: '={{$parameter["location_id"]}}',
+							category_id: '={{$parameter["category_id"]}}',
+							provider_id: '={{$parameter["provider_id"]}}',
+							service_id: '={{$parameter["service_id"]}}',
+							client_id: '={{$parameter["client_id"]}}',
+						},
+					},
+					output: {
+					},
+				},
+			},
+
+
 		],
 		default: 'getBookings',
 	},

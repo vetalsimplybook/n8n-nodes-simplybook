@@ -48,6 +48,36 @@ export const loadOptionsMethods = {
 		return returnData;
 	},
 
+
+	async getLocations(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
+		const returnData: INodePropertyOptions[] = [];
+		const locations = await simplybookApiRequestAllItems.call(this, 'data', 'GET', '/locations');
+		for (const location of locations) {
+			const locationName = location.name;
+			const locationId = location.id;
+			returnData.push({
+				name: locationName,
+				value: locationId,
+			});
+		}
+		return returnData;
+	},
+
+	async getCategories(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
+		const returnData: INodePropertyOptions[] = [];
+		const categories = await simplybookApiRequestAllItems.call(this, 'data', 'GET', '/categories');
+		for (const category of categories) {
+			const categoryName = category.name;
+			const categoryId = category.id;
+			returnData.push({
+				name: categoryName,
+				value: categoryId,
+			});
+		}
+		return returnData;
+	},
+
+
 	async getClients(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 		const returnData: INodePropertyOptions[] = [];
 		const clients = await simplybookApiRequestAllItems.call(this, 'data', 'GET', '/clients');
@@ -100,6 +130,25 @@ export const loadOptionsMethods = {
 		});
 		const clients = await loadOptionsMethods.getClients.call(this);
 		return returnData.concat(clients);
-	}
+	},
 
+	async getLocationsWithEmpty(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
+		const returnData: INodePropertyOptions[] = [];
+		returnData.push({
+			name: '',
+			value: '',
+		});
+		const locations = await loadOptionsMethods.getLocations.call(this);
+		return returnData.concat(locations);
+	},
+
+	async getCategoriesWithEmpty(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
+		const returnData: INodePropertyOptions[] = [];
+		returnData.push({
+			name: '',
+			value: '',
+		});
+		const categories = await loadOptionsMethods.getCategories.call(this);
+		return returnData.concat(categories);
+	},
 }

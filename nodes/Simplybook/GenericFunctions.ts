@@ -1,11 +1,16 @@
 import {
 	IDataObject,
-	IExecuteFunctions, IHttpRequestMethods, IHttpRequestOptions,
-	ILoadOptionsFunctions, JsonObject, NodeApiError,
+	IExecuteFunctions, IHookFunctions, IHttpRequestMethods, IHttpRequestOptions,
+	ILoadOptionsFunctions, IWebhookFunctions, JsonObject, NodeApiError,
 } from 'n8n-workflow';
+import * as crypto from "node:crypto";
+
+
+export var simplybookApiCache: { [key: string]: any } = {};
+export var simplybookApiCacheValidTime = 600000; //10 minutes
 
 export async function simplybookApiRequest(
-	this: IExecuteFunctions | ILoadOptionsFunctions,
+	this: IExecuteFunctions | IWebhookFunctions | IHookFunctions | ILoadOptionsFunctions,
 	method: IHttpRequestMethods,
 	resource: string,
 
@@ -16,6 +21,18 @@ export async function simplybookApiRequest(
 ): Promise<any> {
 	const credentials = await this.getCredentials('SimplybookApi');
 	const url = credentials.url as string;
+
+	//if this not IHookFunctions, check cache
+	let cacheKey = await simplybookApiGetHash(JSON.stringify({method, resource, body, qs, uri}) + 'v1', 'SHA-1');
+	if(!(this as IHookFunctions)) {
+		if (simplybookApiCache[cacheKey] !== undefined) {
+			var isCacheValid = (Date.now() - simplybookApiCache[cacheKey + '_timestamp']) < simplybookApiCacheValidTime; //cache is valid for 1 minute
+			if (isCacheValid) {
+				console.log("Cache hit");
+				return simplybookApiCache[cacheKey];
+			}
+		}
+	}
 
 	let options: IHttpRequestOptions = {
 		headers: {
@@ -44,7 +61,10 @@ export async function simplybookApiRequest(
 
 	try {
 		// return await this.helpers.request(options);
-		return await this.helpers.httpRequestWithAuthentication.call(this, 'SimplybookApi', options);
+		let responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'SimplybookApi', options);
+		simplybookApiCache[cacheKey] = responseData;
+		simplybookApiCache[cacheKey + '_timestamp'] = Date.now();
+		return responseData;
 	} catch (error) {
 		throw new NodeApiError(this.getNode(), error as JsonObject);
 	}
@@ -72,6 +92,18 @@ export async function simplybookApiRequestAllItems(
 
 	let uri: string | undefined;
 
+	//create cache key as hash of all parameters
+	let cacheKey = await simplybookApiGetHash(JSON.stringify({method, resource, body, query, uri}) + 'av1', 'SHA-1');
+
+	//check if cache key exists
+	if (simplybookApiCache[cacheKey] !== undefined) {
+		var isCacheValid = (Date.now() - simplybookApiCache[cacheKey + '_timestamp']) < simplybookApiCacheValidTime; //cache is valid for 1 minute
+		if (isCacheValid) {
+			console.log("Cache hit");
+			return simplybookApiCache[cacheKey];
+		}
+	}
+
 	// do {
 	// 	responseData = await simplybookApiRequest.call(this, method, resource, body, query, uri);
 	// 	uri = responseData.nextPageLink;
@@ -94,6 +126,26 @@ export async function simplybookApiRequestAllItems(
 		}
 	}
 
+	//store data in cache
+	simplybookApiCache[cacheKey] = returnData;
+	simplybookApiCache[cacheKey + '_timestamp'] = Date.now();
+
 	return returnData;
 }
+
+export async function simplybookApiGetHash(str: string | undefined, algo = 'SHA-256') {
+	let strBuf = new TextEncoder().encode(str);
+	return crypto.subtle.digest(algo, strBuf).then((hash) => {
+		//window.hash = hash;
+		// here hash is an arrayBuffer,
+		// so we'll convert it to its hex version
+		let result = '';
+		const view = new DataView(hash);
+		for (let i = 0; i < hash.byteLength; i += 4) {
+			result += ('00000000' + view.getUint32(i).toString(16)).slice(-8);
+		}
+		return result;
+	});
+}
+
 

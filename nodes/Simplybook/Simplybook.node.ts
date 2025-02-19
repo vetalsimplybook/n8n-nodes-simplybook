@@ -79,5 +79,6 @@ export class Simplybook implements INodeType {
 		loadOptions: {
 			...loadOptionsMethods
 		}
-	}
+	};
+
 }

@@ -21,7 +21,6 @@ export class SimplybookTrigger implements INodeType {
 		defaults: {
 			name: 'SimplyBook.Me Trigger',
 		},
-		usableAsTool: true,
 		inputs: [],
 		outputs: [NodeConnectionType.Main],
 		credentials: [

@@ -216,4 +216,41 @@ export const apiFilters: INodeProperties[] = [
 		],
 	},
 
+	{
+		displayName: 'Clients Filter',
+		name: 'clientsFilter',
+		type: 'collection',
+		default: {},
+		placeholder: 'Add Filter',
+		displayOptions: {
+			show: {
+				resource: [
+					'clients',
+				],
+				operation: [
+					'getClients',
+				],
+			},
+		},
+		options: [
+			{
+				displayName: 'Search',
+				name: 'search',
+				description: 'Search for clients by name or email or phone number',
+				type: 'string',
+				default: '',
+				routing: {
+					request: {
+						// You've already set up the URL. qs appends the value of the field as a query string
+						qs: {
+							filter: {
+								search: '={{$value}}',
+							}
+						},
+					},
+				},
+			}
+		],
+	},
+
 ];

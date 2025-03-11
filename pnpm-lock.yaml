@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      change-case:
-        specifier: ^5.4.4
-        version: 5.4.4
       n8n:
         specifier: ^1.78.1
         version: 1.78.1(@aws-crypto/sha256-js@5.2.0)(@aws-sdk/client-bedrock-agent-runtime@3.750.0)(@aws-sdk/client-bedrock-runtime@3.750.0)(@aws-sdk/client-kendra@3.750.0)(@aws-sdk/client-s3@3.750.0)(@aws-sdk/client-sts@3.744.0)(@aws-sdk/credential-provider-node@3.750.0)(@aws-sdk/credential-providers@3.750.0)(@azure/storage-blob@12.18.0(encoding@0.1.13))(@browserbasehq/sdk@2.3.0(encoding@0.1.13))(@browserbasehq/stagehand@1.12.0(@playwright/test@1.50.1)(deepmerge@4.3.1)(dotenv@16.4.7)(encoding@0.1.13)(openai@4.78.1(encoding@0.1.13)(zod@3.24.1))(zod@3.24.1))(@google-cloud/storage@7.15.1(encoding@0.1.13))(@ibm-cloud/watsonx-ai@1.5.0(@langchain/core@0.3.30(openai@4.78.1(encoding@0.1.13)(zod@3.24.1))))(@smithy/util-utf8@2.3.0)(asn1.js@5.4.1)(chokidar@3.6.0)(crypto-js@4.2.0)(date-fns@2.30.0)(encoding@0.1.13)(fast-xml-parser@4.5.2)(gcp-metadata@5.3.0(encoding@0.1.13))(google-auth-library@9.15.1(encoding@0.1.13))(ibm-cloud-sdk-core@5.1.2)(ignore@5.3.2)(mssql@10.0.2)(openai@4.78.1(encoding@0.1.13)(zod@3.24.1))(playwright@1.50.1)(promise-ftp-common@1.1.5)(redis@4.6.12)(socks@2.8.4)(ts-node@10.9.2(@types/node@22.13.4)(typescript@5.3.3))(ts-toolbelt@9.6.0)(tslib@2.8.1)(typescript@5.3.3)
@@ -3258,9 +3255,6 @@ packages:
 
   change-case@4.1.2:
     resolution: {integrity: sha512-bSxY2ws9OtviILG1EiY5K7NNxkqg/JnRnFxLtKQ96JaviiIxi7djMrSd0ECT9AC+lttClmYwKw53BWpOMblo7A==}
-
-  change-case@5.4.4:
-    resolution: {integrity: sha512-HRQyTk2/YPEkt9TnUPbOpr64Uw3KOicFWPVBb+xiHvd6eBx/qPr9xqfBFDT8P2vWsvvz4jbEkfDe71W3VyNu2w==}
 
   char-regex@1.0.2:
     resolution: {integrity: sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==}
@@ -13058,8 +13052,6 @@ snapshots:
       sentence-case: 3.0.4
       snake-case: 3.0.4
       tslib: 2.8.1
-
-  change-case@5.4.4: {}
 
   char-regex@1.0.2: {}
 

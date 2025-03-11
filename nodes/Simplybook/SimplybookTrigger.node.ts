@@ -6,8 +6,7 @@ import {
 	IWebhookFunctions,
 	IWebhookResponseData, NodeConnectionType
 } from 'n8n-workflow';
-import {simplybookApiRequest} from "./GenericFunctions";
-import { snakeCase } from 'change-case';
+import {simplybookApiRequest, snakeCase} from "./GenericFunctions";
 
 export class SimplybookTrigger implements INodeType {
 	description: INodeTypeDescription = {

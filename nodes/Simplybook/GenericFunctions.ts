@@ -9,6 +9,14 @@ import * as crypto from "node:crypto";
 export var simplybookApiCache: { [key: string]: any } = {};
 export var simplybookApiCacheValidTime = 600000; //10 minutes
 
+
+export function snakeCase(str: string | string[]): string {
+	if (Array.isArray(str)) {
+		return str.map((s) => s.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)).join('_');
+	}
+	return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+}
+
 export async function simplybookApiRequest(
 	this: IExecuteFunctions | IWebhookFunctions | IHookFunctions | ILoadOptionsFunctions,
 	method: IHttpRequestMethods,

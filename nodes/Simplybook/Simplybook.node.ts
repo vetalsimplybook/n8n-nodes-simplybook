@@ -17,7 +17,9 @@ export class Simplybook implements INodeType {
 			name: 'SimplyBook.Me',
 		},
 		usableAsTool: true,
+		// eslint-disable-next-line n8n-nodes-base/node-class-description-inputs-wrong-regular-node
 		inputs: [NodeConnectionType.Main],
+		// eslint-disable-next-line n8n-nodes-base/node-class-description-outputs-wrong
 		outputs: [NodeConnectionType.Main],
 		credentials: [
 			{

@@ -22,6 +22,7 @@ export class SimplybookTrigger implements INodeType {
 			name: 'SimplyBook.Me Trigger',
 		},
 		inputs: [],
+		// eslint-disable-next-line n8n-nodes-base/node-class-description-outputs-wrong
 		outputs: [NodeConnectionType.Main],
 		credentials: [
 			{

@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-simplybook",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "n8n node to interact with Simplybook API",
   "keywords": [
     "n8n-community-node-package"
@@ -36,7 +36,7 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/SimplybookApi.credentials.ts"
+      "dist/credentials/SimplybookApi.credentials.js"
     ],
     "nodes": [
       "dist/nodes/Simplybook/Simplybook.node.js",

@@ -8,7 +8,7 @@ import {
 } from 'n8n-workflow';
 
 export class SimplybookApi implements ICredentialType {
-	name = 'SimplybookApi';
+	name = 'simplybookApi';
 	displayName = 'SimplyBook API';
 	documentationUrl = 'https://help.simplybook.me/index.php/User_API_guide';
 	//icon = { light: 'file:icons/simplybook.svg', dark: 'file:icons/SimplyBook.dark.svg' } as const;

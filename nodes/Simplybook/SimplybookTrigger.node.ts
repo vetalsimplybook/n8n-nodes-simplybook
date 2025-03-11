@@ -46,36 +46,37 @@ export class SimplybookTrigger implements INodeType {
 				name: 'event',
 				type: 'options',
 				default: 'newBooking',
+				// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 				options: [
 					{
-						"name": "Cancelled Booking",
-						"description": "Triggers when a booking is canceled.",
-						"value": "cancelBooking"
+						name: "Cancelled Booking",
+						description: 'Triggers when a booking is canceled',
+						value: "cancelBooking"
 					},
 					{
-						"name": "New Booking",
-						"description": "Triggers when a new booking is created.",
-						"value": "newBooking"
+						name: "New Booking",
+						description: 'Triggers when a new booking is created',
+						value: "newBooking"
 					},
 					{
-						"name": "New Invoice",
-						"description": "Triggers when a new invoice is created.",
-						"value": "newInvoice"
+						name: "New Invoice",
+						description: 'Triggers when a new invoice is created',
+						value: "newInvoice"
 					},
 					{
-						"name": "Updated Booking Details",
-						"description": "Triggers when the following booking details are updated: date, time, service, or provider.",
-						"value": "changeBooking"
+						name: "Updated Booking Details",
+						description: 'Triggers when the following booking details are updated: date, time, service, or provider',
+						value: "changeBooking"
 					},
 					{
-						"name": "New Client",
-						"description": "Triggers when new client created.",
-						"value": "newClient"
+						name: "New Client",
+						description: 'Triggers when new client created',
+						value: "newClient"
 					},
 					{
-						"name": "New Offer",
-						"description": "Triggers when a new offer is created.",
-						"value": "newOffer"
+						name: "New Offer",
+						description: 'Triggers when a new offer is created',
+						value: "newOffer"
 					}
 				],
 				required: true,

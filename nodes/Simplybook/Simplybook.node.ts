@@ -34,19 +34,10 @@ export class Simplybook implements INodeType {
 				name: 'resource',
 				type: 'options',
 				noDataExpression: true,
-				// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 				options: [
 					{
-						name: 'Service',
-						value: 'services',
-					},
-					{
-						name: 'Provider',
-						value: 'providers',
-					},
-					{
-						name: 'Location',
-						value: 'locations',
+						name: 'Booking',
+						value: 'bookings',
 					},
 					{
 						name: 'Category',
@@ -57,13 +48,21 @@ export class Simplybook implements INodeType {
 						value: 'clients',
 					},
 					{
+						name: 'Location',
+						value: 'locations',
+					},
+					{
+						name: 'Provider',
+						value: 'providers',
+					},
+					{
+						name: 'Service',
+						value: 'services',
+					},
+					{
 						name: 'Slot',
 						value: 'slots',
 					},
-					{
-						name: 'Booking',
-						value: 'bookings',
-					}
 				],
 				default: 'services',
 			},

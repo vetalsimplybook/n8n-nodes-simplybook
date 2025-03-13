@@ -69,7 +69,7 @@ export async function simplybookApiRequest(
 
 	try {
 		// return await this.helpers.request(options);
-		let responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'SimplybookApi', options);
+		let responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'simplybookApi', options);
 		simplybookApiCache[cacheKey] = responseData;
 		simplybookApiCache[cacheKey + '_timestamp'] = Date.now();
 		return responseData;

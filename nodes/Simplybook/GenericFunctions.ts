@@ -27,7 +27,7 @@ export async function simplybookApiRequest(
 	uri?: string,
 	option: IDataObject = {},
 ): Promise<any> {
-	const credentials = await this.getCredentials('SimplybookApi');
+	const credentials = await this.getCredentials('simplybookApi');
 	const url = credentials.url as string;
 
 	//if this not IHookFunctions, check cache

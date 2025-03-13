@@ -25,7 +25,7 @@ export class SimplybookTrigger implements INodeType {
 		outputs: [NodeConnectionType.Main],
 		credentials: [
 			{
-				name: 'SimplybookApi',
+				name: 'simplybookApi',
 				required: true,
 			},
 		],

@@ -78,7 +78,7 @@ export class SimplybookApi implements ICredentialType {
 
 		const url = credentials.url as string;
 
-		const	tokenLiveTime = 60; // Token will be valid for 60 minutes
+		const	tokenLiveTime = 45; // Token will be valid for 60 minutes
 
 		const authResponse = await this.helpers.httpRequest({
 			method: 'POST',

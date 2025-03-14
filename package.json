@@ -63,6 +63,7 @@
     "n8n-workflow": "*"
   },
   "dependencies": {
-    "n8n": "^1.82.3"
+    "n8n": "^1.82.3",
+    "xml-crypto" : "^3.2.1"
   }
 }

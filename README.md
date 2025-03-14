@@ -87,6 +87,7 @@ Refer to the [SimplyBook.me API documentation](https://help.simplybook.me/index.
 * [SimplyBook.me Developers API](https://simplybook.me/en/api/developer-api)
 ## Version history
 
+* 0.3.4 - Update dependencies related to security (a security vulnerability found in xml-crypto)
 * 0.3.0 - Minor fixes
 * 0.2.0 - Minor fixes
 * 0.1.0 - Initial release

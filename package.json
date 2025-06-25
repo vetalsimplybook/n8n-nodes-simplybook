@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-simplybook",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "n8n node to interact with Simplybook API",
   "keywords": [
     "n8n-community-node-package",

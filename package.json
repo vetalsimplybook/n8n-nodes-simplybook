@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-simplybook",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "n8n node to interact with Simplybook API",
   "keywords": [
     "n8n-community-node-package",
@@ -61,9 +61,5 @@
   },
   "peerDependencies": {
     "n8n-workflow": "*"
-  },
-  "dependencies": {
-    "n8n": "^1.82.3",
-    "xml-crypto" : "^3.2.1"
   }
 }

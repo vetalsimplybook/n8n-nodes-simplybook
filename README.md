@@ -74,7 +74,7 @@ To use this node, you need to authenticate with the SimplyBook.me API. Follow th
 
 ## Compatibility
 
-This node is compatible with n8n version 1.81 and above. It hasn't been tested on other versions yet.
+This node is compatible with n8n version 1.81 and above. Tested with n8n 2.13.x.
 
 ## Usage
 
@@ -87,6 +87,10 @@ Refer to the [SimplyBook.me API documentation](https://help.simplybook.me/index.
 * [SimplyBook.me Developers API](https://simplybook.me/en/api/developer-api)
 ## Version history
 
+* 0.4.1 - Fix connection type compatibility with n8n 2.x (use string literals instead of NodeConnectionType enum)
+* 0.4.0 - Update to n8n-workflow 2.x
+* 0.3.6 - Minor fixes
+* 0.3.5 - Minor fixes
 * 0.3.4 - Update dependencies related to security (a security vulnerability found in xml-crypto)
 * 0.3.0 - Minor fixes
 * 0.2.0 - Minor fixes

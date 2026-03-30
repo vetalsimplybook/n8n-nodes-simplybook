@@ -4,7 +4,7 @@ import {
 	INodeType,
 	INodeTypeDescription,
 	IWebhookFunctions,
-	IWebhookResponseData, NodeConnectionTypes
+	IWebhookResponseData,
 } from 'n8n-workflow';
 import {simplybookApiRequest, snakeCase} from "./GenericFunctions";
 
@@ -22,7 +22,7 @@ export class SimplybookTrigger implements INodeType {
 		},
 		inputs: [],
 		// eslint-disable-next-line n8n-nodes-base/node-class-description-outputs-wrong
-		outputs: [NodeConnectionTypes.Main],
+		outputs: ['main'],
 		credentials: [
 			{
 				name: 'simplybookApi',

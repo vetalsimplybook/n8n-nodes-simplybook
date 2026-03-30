@@ -1,4 +1,4 @@
-import { INodeType, INodeTypeDescription, NodeConnectionTypes } from 'n8n-workflow';
+import { INodeType, INodeTypeDescription } from 'n8n-workflow';
 import {apiOperations} from "./ApiOperations";
 import {apiFilters} from "./ApiFilters";
 import {apiQueryParams} from "./ApiQueryParams";
@@ -18,9 +18,9 @@ export class Simplybook implements INodeType {
 		},
 		usableAsTool: true,
 		// eslint-disable-next-line n8n-nodes-base/node-class-description-inputs-wrong-regular-node
-		inputs: [NodeConnectionTypes.Main],
+		inputs: ['main'],
 		// eslint-disable-next-line n8n-nodes-base/node-class-description-outputs-wrong
-		outputs: [NodeConnectionTypes.Main],
+		outputs: ['main'],
 		credentials: [
 			{
 				name: 'simplybookApi',
